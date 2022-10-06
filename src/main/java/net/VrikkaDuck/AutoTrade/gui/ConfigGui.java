@@ -12,6 +12,7 @@ import net.VrikkaDuck.AutoTrade.config.Configs;
 import net.VrikkaDuck.AutoTrade.config.FeatureToggle;
 import com.google.common.collect.ImmutableList;
 import net.VrikkaDuck.AutoTrade.config.Hotkeys;
+import net.VrikkaDuck.AutoTrade.config.Lists;
 
 import java.util.Collections;
 import java.util.List;
@@ -63,11 +64,11 @@ public class ConfigGui extends GuiConfigsBase {
        /* else if (tab == ConfigGuiTab.FIXES)
         {
             return 60;
-        }
+        }*/
         else if (tab == ConfigGuiTab.LISTS)
         {
             return 200;
-        }*/
+        }
 
         return 260;
     }
@@ -96,18 +97,18 @@ public class ConfigGui extends GuiConfigsBase {
         {
             configs = Configs.Fixes.OPTIONS;
         }*/
-        /*else if (tab == ConfigGuiTab.LISTS)
+        else if (tab == ConfigGuiTab.LISTS)
         {
-            configs = Configs.Lists.OPTIONS;
-        }*/
+            configs = Lists.OPTIONS;
+        }
         else if (tab == ConfigGuiTab.TWEAKS)
         {
             return ConfigOptionWrapper.createFor(TWEAK_LIST.stream().map(this::wrapConfig).toList());
         }
-       /* else if (tab == ConfigGuiTab.GENERIC_HOTKEYS)
+        else if (tab == ConfigGuiTab.HOTKEYS)
         {
             configs = Hotkeys.HOTKEY_LIST;
-        }*/
+        }
         else
         {
             return Collections.emptyList();
@@ -146,9 +147,9 @@ public class ConfigGui extends GuiConfigsBase {
     {
         GENERIC         ("vrikkaducks-autotrade.gui.button.config_gui.generic"),
        // FIXES           ("tweakeroo.gui.button.config_gui.fixes"),
-       // LISTS           ("tweakeroo.gui.button.config_gui.lists"),
-        TWEAKS          ("vrikkaducks-autotrade.gui.button.config_gui.tweaks");
-        //GENERIC_HOTKEYS ("tweakeroo.gui.button.config_gui.generic_hotkeys"),
+        LISTS           ("vrikkaducks-autotrade.gui.button.config_gui.lists"),
+        TWEAKS          ("vrikkaducks-autotrade.gui.button.config_gui.tweaks"),
+        HOTKEYS ("vrikkaducks-autotrade.gui.button.config_gui.hotkeys");
         //DISABLES        ("tweakeroo.gui.button.config_gui.disables");
 
         private final String translationKey;

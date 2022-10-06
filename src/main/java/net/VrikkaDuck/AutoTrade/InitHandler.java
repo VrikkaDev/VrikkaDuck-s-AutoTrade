@@ -2,9 +2,11 @@ package net.VrikkaDuck.AutoTrade;
 
 import fi.dy.masa.malilib.config.ConfigManager;
 import fi.dy.masa.malilib.event.InputEventHandler;
+import fi.dy.masa.malilib.event.TickHandler;
 import fi.dy.masa.malilib.interfaces.IInitializationHandler;
 import net.VrikkaDuck.AutoTrade.config.Callbacks;
 import net.VrikkaDuck.AutoTrade.config.Configs;
+import net.VrikkaDuck.AutoTrade.event.ClientTickHandler;
 import net.VrikkaDuck.AutoTrade.input.KeyboardHandler;
 import net.minecraft.client.MinecraftClient;
 
@@ -17,6 +19,8 @@ public class InitHandler implements IInitializationHandler {
         InputEventHandler.getInputManager().registerKeyboardInputHandler(keyboardHandler);
 
         ConfigManager.getInstance().registerConfigHandler(Variables.MODID, new Configs());
+
+        TickHandler.getInstance().registerClientTickHandler(new ClientTickHandler());
 
         Callbacks.init(MinecraftClient.getInstance());
     }

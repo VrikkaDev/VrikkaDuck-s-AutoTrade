@@ -21,9 +21,15 @@ public class Configs implements IConfigHandler {
     private static final String CONFIG_FILE_NAME = Variables.MODID + ".json";
 
     public static class Generic {
-        public static final ConfigDouble MAX_VILLAGER_DISTANCE = new ConfigDouble("maxVillagerDistance", 3, "Max distance autotrade detects villager");
+        public static final ConfigDouble MAX_VILLAGER_DISTANCE = new ConfigDouble("maxVillagerDistance", 3, 0, 5, "Max distance autotrade detects villager");
+        public static final ConfigDouble TIME_BETWEEN_TRIES = new ConfigDouble("timeBetweenTries", 1000, 100, 999999, "Time in MS between trade tries");
+        public static final ConfigDouble TIME_TO_TRADE = new ConfigDouble("timeToTrade", 50, 10, 10000, "Time in MS between opening merchant screen /n and trading");
+        //public static final ConfigBoolean IGNORE_PRICE = new ConfigBoolean("ignorePrice", true, "True: buys items no matter what price they are n/ False: only buys items if it price is same");
 
-        public static ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(MAX_VILLAGER_DISTANCE);
+        public static ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
+                MAX_VILLAGER_DISTANCE,
+                TIME_BETWEEN_TRIES
+        );
     }
 
     public static void loadFromFile()
@@ -39,6 +45,8 @@ public class Configs implements IConfigHandler {
                 JsonObject root = element.getAsJsonObject();
 
                 ConfigUtils.readConfigBase(root, "Generic", Configs.Generic.OPTIONS);
+                ConfigUtils.readConfigBase(root, "Lists", Lists.OPTIONS);
+                ConfigUtils.readConfigBase(root, "Hotkeys", Hotkeys.HOTKEY_LIST);
                 ConfigUtils.readHotkeyToggleOptions(root, "TweakHotkeys", "TweakToggles", FeatureToggle.VALUES);
             }
         }
@@ -53,6 +61,8 @@ public class Configs implements IConfigHandler {
             JsonObject root = new JsonObject();
 
             ConfigUtils.writeConfigBase(root, "Generic", Configs.Generic.OPTIONS);
+            ConfigUtils.writeConfigBase(root, "Lists", Lists.OPTIONS);
+            ConfigUtils.writeConfigBase(root, "Hotkeys", Hotkeys.HOTKEY_LIST);
             ConfigUtils.writeHotkeyToggleOptions(root, "TweakHotkeys", "TweakToggles", FeatureToggle.VALUES);
 
             JsonUtils.writeJsonToFile(root, new File(dir, CONFIG_FILE_NAME));

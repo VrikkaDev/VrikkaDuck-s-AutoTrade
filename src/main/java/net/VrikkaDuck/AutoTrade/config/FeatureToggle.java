@@ -5,10 +5,7 @@ import fi.dy.masa.malilib.config.IConfigBoolean;
 import fi.dy.masa.malilib.config.IConfigNotifiable;
 import fi.dy.masa.malilib.config.IHotkeyTogglable;
 import fi.dy.masa.malilib.gui.GuiBase;
-import fi.dy.masa.malilib.hotkeys.IKeybind;
-import fi.dy.masa.malilib.hotkeys.KeyCallbackToggleBooleanConfigWithMessage;
-import fi.dy.masa.malilib.hotkeys.KeybindMulti;
-import fi.dy.masa.malilib.hotkeys.KeybindSettings;
+import fi.dy.masa.malilib.hotkeys.*;
 import fi.dy.masa.malilib.interfaces.IValueChangeCallback;
 import fi.dy.masa.malilib.util.StringUtils;
 import net.VrikkaDuck.AutoTrade.Variables;
@@ -18,8 +15,8 @@ import com.google.gson.JsonPrimitive;
 
 public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfigBoolean>
 {
-    TWEAK_AUTO_TRADE ("tweakAutoTrade",         false, "",    "Enables AutoTrading");
-
+    TWEAK_AUTO_TRADE ("tweakAutoTrade",         false, "f,g", KeybindSettings.create(KeybindSettings.Context.ANY,
+            KeyAction.PRESS, false, true, false,true),    "Enables AutoTrading");
 
     public static final ImmutableList<FeatureToggle> VALUES = ImmutableList.copyOf(values());
 
@@ -144,7 +141,7 @@ public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfig
 
         if (comment != null && this.singlePlayer)
         {
-            return comment + "\n" + StringUtils.translate("tweakeroo.label.config_comment.single_player_only");
+            return comment + "\n" + StringUtils.translate("vrikkaducks-autotrade.label.config_comment.single_player_only");
         }
 
         return comment;
