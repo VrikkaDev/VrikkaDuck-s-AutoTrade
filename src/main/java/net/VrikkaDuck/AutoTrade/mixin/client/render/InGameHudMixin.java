@@ -12,6 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class InGameHudMixin {
     @Inject(method = "render", at = @At("RETURN"))
     private void render(MatrixStack matrices, float tickDelta, CallbackInfo info){
-        VillagerUtils.drawMessages(matrices);
+        if(!(VillagerUtils.currentScreen == null)){
+            VillagerUtils.drawMessages(matrices);
+        }
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.ingame.MerchantScreen;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -48,7 +49,8 @@ public abstract class MerchantScreenMixin extends HandledScreen<MerchantScreenHa
         }
     }
     @Inject(method = "render", at = @At("RETURN"))
-    private void render(CallbackInfo info){
+    private void render(MatrixStack matrices, int x, int y, float d, CallbackInfo info){
+        VillagerUtils.drawMessages(matrices);
         if(VillagerUtils.shouldClose){
             VillagerUtils.shouldClose = false;
             ((MerchantScreen) (Object) this).close();

@@ -7,10 +7,7 @@ import fi.dy.masa.malilib.config.ConfigUtils;
 import fi.dy.masa.malilib.config.IConfigBase;
 import fi.dy.masa.malilib.config.IConfigHandler;
 import fi.dy.masa.malilib.config.IHotkeyTogglable;
-import fi.dy.masa.malilib.config.options.ConfigBoolean;
-import fi.dy.masa.malilib.config.options.ConfigBooleanHotkeyed;
-import fi.dy.masa.malilib.config.options.ConfigDouble;
-import fi.dy.masa.malilib.config.options.ConfigHotkey;
+import fi.dy.masa.malilib.config.options.*;
 import fi.dy.masa.malilib.util.FileUtils;
 import fi.dy.masa.malilib.util.JsonUtils;
 import net.VrikkaDuck.AutoTrade.Variables;
@@ -24,11 +21,14 @@ public class Configs implements IConfigHandler {
         public static final ConfigDouble MAX_VILLAGER_DISTANCE = new ConfigDouble("maxVillagerDistance", 3, 0, 5, "Max distance autotrade detects villager");
         public static final ConfigDouble TIME_BETWEEN_TRIES = new ConfigDouble("timeBetweenTries", 5000, 100, 999999, "Time in MS between trade tries");
         public static final ConfigDouble TIME_TO_TRADE = new ConfigDouble("timeToTrade", 50, 10, 10000, "Time in MS between opening merchant screen /n and trading");
+        public static final ConfigInteger TRADE_TRIES = new ConfigInteger("tradeTries", 10, 1, 100, "How many times it tries to trade /n before moving on");
         //public static final ConfigBoolean IGNORE_PRICE = new ConfigBoolean("ignorePrice", true, "True: buys items no matter what price they are n/ False: only buys items if it price is same");
 
         public static ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
                 MAX_VILLAGER_DISTANCE,
-                TIME_BETWEEN_TRIES
+                TIME_BETWEEN_TRIES,
+                TIME_TO_TRADE,
+                TRADE_TRIES
         );
     }
 

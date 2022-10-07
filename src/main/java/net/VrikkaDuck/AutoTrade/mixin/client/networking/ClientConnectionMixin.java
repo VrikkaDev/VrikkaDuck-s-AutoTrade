@@ -3,6 +3,7 @@ package net.VrikkaDuck.AutoTrade.mixin.client.networking;
 import com.mojang.blaze3d.systems.RenderSystem;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.VrikkaDuck.AutoTrade.config.Configs;
 import net.VrikkaDuck.AutoTrade.config.FeatureToggle;
 import net.VrikkaDuck.AutoTrade.mixin.client.villager.VillagerEntityMixin;
 import net.VrikkaDuck.AutoTrade.villager.VillagerBuyThread;
@@ -96,7 +97,7 @@ public class ClientConnectionMixin {
 
             tries++;
 
-            if(tries > 10){
+            if(tries > Configs.Generic.TRADE_TRIES.getIntegerValue()){
                 VillagerUtils.addVillagerToIgnoreList(vg);
                 VillagerUtils.shouldClose = true;
                 return;

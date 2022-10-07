@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "net.VrikkaDuck.AutoTrade.AutoTrade"
+    ],
+    "modmenu": [
+      "net.VrikkaDuck.AutoTrade.compat.modmenu.ModMenuImpl"
     ]
   },
   "mixins": [

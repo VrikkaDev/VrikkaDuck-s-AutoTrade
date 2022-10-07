@@ -12,6 +12,7 @@ import fi.dy.masa.malilib.util.Constants;
 import fi.dy.masa.malilib.util.GuiUtils;
 import fi.dy.masa.malilib.util.InfoUtils;
 import fi.dy.masa.malilib.util.NBTUtils;
+import net.VrikkaDuck.AutoTrade.Variables;
 import net.VrikkaDuck.AutoTrade.config.Lists;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.MerchantScreen;
@@ -167,6 +168,7 @@ public class VillagerUtils {
     public static int getTradeId(TradeOfferList offerList){
 
         for(int i = 0; i < offerList.size(); i++){
+            Variables.LOGGER.info(offerList.get(i).toNbt());
             if(tradeListContains(offerList.get(i)) && !offerList.get(i).isDisabled()){
                 return i;
             }
