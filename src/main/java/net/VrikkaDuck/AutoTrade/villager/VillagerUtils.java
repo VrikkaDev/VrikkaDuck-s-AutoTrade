@@ -49,15 +49,18 @@ public class VillagerUtils {
         List<String> stringslist = Lists.TRADES_LIST.getStrings();
 
         if(tradeListContains(trade)) {
-            setOverlayText("Selected trade is already in the list");
+            setOverlayText("Removed selected trade from the list");
+            String string = String.valueOf(trade.toNbt());
+            stringslist.remove(String.valueOf(string));
+            Lists.TRADES_LIST.setStrings(stringslist);
             return;
         }else{
             setOverlayText("Added trade to the list");
         }
 
         String string = String.valueOf(trade.toNbt());
-        Lists.TRADES_LIST.setStrings(stringslist);
         stringslist.add(String.valueOf(string));
+        Lists.TRADES_LIST.setStrings(stringslist);
 
         updateLocalValues();
     }
@@ -117,7 +120,7 @@ public class VillagerUtils {
     }
 
     public static void setOverlayText(String string){
-        mr.addMessage(3000, string);
+        mr.addMessage(1000, string);
     }
 
     //Called in InGameHudMixin
