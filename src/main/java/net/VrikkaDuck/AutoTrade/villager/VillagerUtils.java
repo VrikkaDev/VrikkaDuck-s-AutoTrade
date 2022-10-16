@@ -171,7 +171,6 @@ public class VillagerUtils {
     public static int getTradeId(TradeOfferList offerList){
 
         for(int i = 0; i < offerList.size(); i++){
-            Variables.LOGGER.info(offerList.get(i).toNbt());
             if(tradeListContains(offerList.get(i)) && !offerList.get(i).isDisabled()){
                 return i;
             }

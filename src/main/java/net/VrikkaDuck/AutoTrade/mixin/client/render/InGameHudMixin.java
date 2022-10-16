@@ -1,5 +1,6 @@
 package net.VrikkaDuck.AutoTrade.mixin.client.render;
 
+import net.VrikkaDuck.AutoTrade.config.FeatureToggle;
 import net.VrikkaDuck.AutoTrade.villager.VillagerUtils;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -12,6 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class InGameHudMixin {
     @Inject(method = "render", at = @At("RETURN"))
     private void render(MatrixStack matrices, float tickDelta, CallbackInfo info){
+        if(!FeatureToggle.TWEAK_AUTO_TRADE.getBooleanValue()){
+            return;
+        }
         if(!(VillagerUtils.currentScreen == null)){
             VillagerUtils.drawMessages(matrices);
         }

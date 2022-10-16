@@ -4,11 +4,9 @@
   "package": "net.VrikkaDuck.AutoTrade.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-  ],
-  "client": [
     "client.villager.MerchantScreenMixin",
-    "client.villager.VillagerEntityMixin",
     "client.networking.ClientConnectionMixin",
+    "client.networking.IPlayerInteractEntityC2SPacketMixin",
     "client.render.InGameHudMixin"
   ],
   "injectors": {

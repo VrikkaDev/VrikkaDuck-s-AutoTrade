@@ -2,6 +2,7 @@ package net.VrikkaDuck.AutoTrade.villager;
 
 import net.VrikkaDuck.AutoTrade.config.Configs;
 import net.VrikkaDuck.AutoTrade.config.FeatureToggle;
+import net.VrikkaDuck.AutoTrade.config.Hotkeys;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.VillagerEntity;
@@ -32,7 +33,11 @@ public class VillagerTweaks {
 
     private void handleVillagers(MinecraftClient mc){
 
-        if(FeatureToggle.TWEAK_AUTO_TRADE.getBooleanValue()){
+        if(!FeatureToggle.TWEAK_AUTO_TRADE.getBooleanValue()){
+            return;
+        }
+
+        if(Hotkeys.TRADE.getKeybind().isKeybindHeld()) {
             Box box = player.getBoundingBox().expand(Configs.Generic.MAX_VILLAGER_DISTANCE.getDoubleValue());
 
             World world = player.getWorld();
