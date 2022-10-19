@@ -44,7 +44,7 @@ public class ClientConnectionMixin {
     //How many times tried to trade with villager
     private int tries = 0;
 
-    @Inject(method = "send(Lnet/minecraft/network/Packet;)V", at = @At("RETURN"))
+    @Inject(method = "send(Lnet/minecraft/network/Packet;)V", at = @At("HEAD"))
     private void send(Packet packet, CallbackInfo info){
 
         if(!FeatureToggle.TWEAK_AUTO_TRADE.getBooleanValue()){
