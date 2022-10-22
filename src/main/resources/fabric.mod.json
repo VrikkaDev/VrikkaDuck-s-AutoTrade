@@ -4,9 +4,11 @@
   "version": "${version}",
 
   "name": "VrikkaDuck's Autotrade",
-  "description": "With this mod you can trade with villagers automatically",
+  "description": "Allows you to auto trade with villagers",
+
   "authors": [
-    "VrikkaDuck"
+    "VrikkaDuck",
+    "TheMasterFox"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
