@@ -7,7 +7,7 @@ import net.minecraft.client.MinecraftClient;
 
 public class ClientTickHandler implements IClientTickHandler {
 
-    private VillagerTweaks villagerTweaks = new VillagerTweaks();
+    private final VillagerTweaks villagerTweaks = new VillagerTweaks();
     @Override
     public void onClientTick(MinecraftClient mc)
     {

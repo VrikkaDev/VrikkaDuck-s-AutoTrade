@@ -8,5 +8,5 @@ public class Variables {
 
     public static final String MODNAME = "vrikkaducks-autotrade";
     public static final String MODID = "vrikkaducks-autotrade";
-    public static final String MODVERSION = "1.0.0";
+    public static final String MODVERSION = "1.0.1";
 }
