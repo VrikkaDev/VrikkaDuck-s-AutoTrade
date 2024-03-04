@@ -9,6 +9,7 @@ import net.VrikkaDuck.AutoTrade.config.Hotkeys;
 import net.VrikkaDuck.AutoTrade.villager.VillagerTrade;
 import net.VrikkaDuck.AutoTrade.villager.VillagerUtils;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.ingame.MerchantScreen;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -37,7 +38,7 @@ import java.util.List;
 public abstract class MerchantScreenMixin extends HandledScreen<MerchantScreenHandler> {
 
     private static final Identifier DUCK_TEXTURE = new Identifier(Variables.MODID,"textures/duck.png");
-    private static final Identifier TEXTURE = new Identifier("textures/gui/container/villager2.png");
+    private static final Identifier TEXTURE = new Identifier("textures/gui/container/villager.png");
 
     public MerchantScreenMixin(MerchantScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -62,9 +63,9 @@ public abstract class MerchantScreenMixin extends HandledScreen<MerchantScreenHa
         }
     }
     @Inject(method = "render", at = @At("RETURN"))
-    private void render(MatrixStack matrices, int x, int y, float d, CallbackInfo info){
+    private void render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci){
         if(FeatureToggle.TWEAK_AUTO_TRADE.getBooleanValue()){
-            VillagerUtils.drawMessages(matrices);
+            VillagerUtils.drawMessages(context);
         }
         if(VillagerUtils.shouldClose){
             VillagerUtils.shouldClose = false;
@@ -95,7 +96,7 @@ public abstract class MerchantScreenMixin extends HandledScreen<MerchantScreenHa
     }
 
     @Inject(method = "renderArrow", at = @At("HEAD"), cancellable = true)
-    private void renderArrow(MatrixStack matrices, TradeOffer offer, int x, int y, CallbackInfo info){
+    private void renderArrow(DrawContext context, TradeOffer offer, int x, int y, CallbackInfo ci){
 
         if(!FeatureToggle.TWEAK_AUTO_TRADE.getBooleanValue()){
             return;
@@ -106,14 +107,14 @@ public abstract class MerchantScreenMixin extends HandledScreen<MerchantScreenHa
         }
 
         RenderSystem.enableBlend();
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionProgram);
         RenderSystem.setShaderTexture(0, DUCK_TEXTURE);
         if (offer.isDisabled()) {
-            drawTexture(matrices, x + 3 + 35 + 20+2, y+2, this.getZOffset(), 12, 0, 12, 12, 24, 12);
+            context.drawTexture(DUCK_TEXTURE,x + 3 + 35 + 20+2, y+2, 6, 12, 0, 12, 12, 24, 12);
         } else {
-            drawTexture(matrices, x + 3 + 35 + 20+1, y+2, this.getZOffset(), 0, 0, 12, 12, 24, 12);
+            context.drawTexture(DUCK_TEXTURE, x + 3 + 35 + 20+1, y+2, 6, 0, 0, 12, 12, 24, 12);
         }
         RenderSystem.setShaderTexture(0, TEXTURE);
-        info.cancel();
+        ci.cancel();
     }
 }

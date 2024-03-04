@@ -15,6 +15,7 @@ import fi.dy.masa.malilib.util.NBTUtils;
 import net.VrikkaDuck.AutoTrade.Variables;
 import net.VrikkaDuck.AutoTrade.config.Lists;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.MerchantScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.passive.VillagerEntity;
@@ -124,9 +125,9 @@ public class VillagerUtils {
     }
 
     //Called in InGameHudMixin
-    public static void drawMessages(MatrixStack matrixStack){
+    public static void drawMessages(DrawContext context){
         mr.drawMessages(MinecraftClient.getInstance().getWindow().getScaledWidth()/2-50,
-                (int) (MinecraftClient.getInstance().getWindow().getScaledHeight()/1.25f), matrixStack);
+                (int) (MinecraftClient.getInstance().getWindow().getScaledHeight()/1.25f), context);
     }
 
     public static VillagerProfession idToProfession(String id){

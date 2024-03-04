@@ -16,8 +16,8 @@ import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.ClientConnection;
-import net.minecraft.network.Packet;
 import net.minecraft.network.listener.PacketListener;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.ClickSlotC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
 import net.minecraft.network.packet.c2s.play.SelectMerchantTradeC2SPacket;
@@ -44,8 +44,8 @@ public class ClientConnectionMixin {
     //How many times tried to trade with villager
     private int tries = 0;
 
-    @Inject(method = "send(Lnet/minecraft/network/Packet;)V", at = @At("HEAD"))
-    private void send(Packet packet, CallbackInfo info){
+    @Inject(method = "send(Lnet/minecraft/network/packet/Packet;)V", at = @At("HEAD"))
+    private void send(Packet<?> packet, CallbackInfo info){
 
         if(!FeatureToggle.TWEAK_AUTO_TRADE.getBooleanValue()){
             return;
